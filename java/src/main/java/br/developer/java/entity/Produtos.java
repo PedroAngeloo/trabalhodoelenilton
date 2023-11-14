@@ -2,24 +2,18 @@ package br.developer.java.entity;
 
 import javax.persistence.*;
 
-@Entity // Indica que a classe é uma entidade JPA
-@Table(name = "produtos") // Especifica o nome da tabela no banco de dados
+@Entity
+@Table(name = "produtos")
 public class Produtos {
 
-	@Id // Indica o campo que representa a chave primária da tabela
-	@Column(name = "id") // Especifica o nome da coluna no banco de dados
-	@GeneratedValue // Indica que o valor para esta coluna será gerado automaticamente
-	public Long id; // Identificador único para cada produto
-
-	@Column(name = "nome", nullable = false) // Define o campo "nome" na tabela de produtos, não permitindo valores
-												// nulos
-	private String nome; // Nome do produto
-
-	@Column(name = "valor", nullable = false) // Define o campo "valor" na tabela de produtos, não permitindo valores
-												// nulos
-	private double valor; // Valor do produto
-
-	// Getters e Setters para cada atributo da classe Produtos
+	@Id
+	@Column(name = "id")
+	@GeneratedValue
+	public Long id;
+	@Column(name = "nome", nullable = false)
+	private String nome;
+	@Column(name = "valor", nullable = false)
+	private double valor;
 
 	public String getNome() {
 		return nome;

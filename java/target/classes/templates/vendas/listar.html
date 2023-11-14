@@ -2,25 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<!-- Importação do framework Bootstrap CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-	<!-- Importação do arquivo de estilo CSS -->
+	<!-- Custom styles for this template -->
 	<link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
 	<meta charset="utf-8">
 	<title>Tela de Vendas</title>
 </head>
 
 <body>
-	<!-- Cabeçalho -->
 	<header>
-		<!-- Imagem do cabeçalho -->
 		<img src="http://blog.gazinatacado.com.br/wp-content/uploads/2015/06/Shopping_cart_full_sign_256.png?x88556"
 			width=200 height=200>
 	</header>
 
-	<!-- Navegação -->
 	<nav>
-		<!-- Botões de navegação -->
 		<a href="/clientes/cadastrar"><button onclick="cadastrodeclientes" class="small button">Cadastro de
 				Clientes</button></a>
 		<a href="/produtos/cadastrar"><button class="small button">Cadastro de Produtos</button></a>
@@ -30,13 +25,11 @@
 		<a href="/produtos/listar"><button class="small button">Lista de Produtos</button></a>
 	</nav>
 
-	<!-- Tabela de vendas -->
 	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-sm table-striped table-hover table-bordered">
 				<thead>
 					<tr>
-						<!-- Cabeçalhos da tabela -->
 						<th>ID</th>
 						<th>ID do Cliente</th>
 						<th>Nome do Cliente</th>
@@ -47,9 +40,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- Loop sobre as vendas -->
 					<tr th:each="v : ${vendas}">
-						<!-- Colunas da tabela -->
 						<td th:text="${v.id}"></td>
 						<td th:text="${v.cliente.id}"></td>
 						<td th:text="${v.nome_cliente}"></td>
@@ -65,9 +56,14 @@
 		</div>
 	</div>
 
-	<!-- Botão para imprimir -->
 	<a href="/vendas/relatorio"><button class="small button">Imprimir</button></a>
 
-	<!-- Rodapé -->
 	<footer class="footer">
-		<div class="
+		<div class="container">
+			<span class="footer-copy">&copy; 2023 Desenvolvido por Lazzarin Pedro.</span>
+		</div>
+	</footer>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

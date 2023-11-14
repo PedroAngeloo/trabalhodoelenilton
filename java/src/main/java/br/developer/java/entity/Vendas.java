@@ -4,30 +4,23 @@ import java.util.*;
 
 import javax.persistence.*;
 
-@Entity // Indica que a classe é uma entidade JPA
-@Table(name = "vendas") // Especifica o nome da tabela no banco de dados
+@Entity
+@Table(name = "vendas")
 public class Vendas {
-	@Id // Indica o campo que representa a chave primária da tabela
-	@Column(name = "id") // Especifica o nome da coluna no banco de dados
-	@GeneratedValue // Indica que o valor para esta coluna será gerado automaticamente
-	public Long id; // Identificador único para cada venda
-	@ManyToOne // Relacionamento muitos-para-um com a entidade Produtos
-	private Produtos produtos; // Produto vendido
-
-	private String nome_produto; // Nome do produto (derivado do relacionamento com Produtos)
-
-	@ManyToOne // Relacionamento muitos-para-um com a entidade Clientes
-	private Clientes cliente; // Cliente que fez a compra
-
-	private String nome_cliente; // Nome do cliente (derivado do relacionamento com Clientes)
-
-	@Column(name = "quantidade") // Define a coluna "quantidade" na tabela vendas
-	private int quantidade; // Quantidade de produtos vendidos
-
-	@Column(name = "total") // Define a coluna "total" na tabela vendas
-	private double total; // Valor total da venda
-
-	// Getters e Setters para cada atributo da classe Vendas
+	@Id
+	@Column(name = "id")
+	@GeneratedValue
+	public Long id;
+	@ManyToOne
+	private Produtos produtos;
+	private String nome_produto;
+	@ManyToOne
+	private Clientes cliente;
+	private String nome_cliente;
+	@Column(name = "quantidade")
+	private int quantidade;
+	@Column(name = "total")
+	private double total;
 
 	public Produtos getProduto() {
 		return produtos;

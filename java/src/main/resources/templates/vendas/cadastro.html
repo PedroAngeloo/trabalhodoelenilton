@@ -2,25 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<!-- Importação do framework Bootstrap CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-	<!-- Importação do arquivo de estilo CSS -->
+	<!-- Custom styles for this template -->
 	<link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
 	<meta charset="utf-8">
 	<title>Cadastrar Vendas</title>
 </head>
 
 <body>
-	<!-- Cabeçalho -->
 	<header>
-		<!-- Imagem do cabeçalho -->
 		<img src="http://blog.gazinatacado.com.br/wp-content/uploads/2015/06/Shopping_cart_full_sign_256.png?x88556"
 			width=200 height=200>
 	</header>
 
-	<!-- Navegação -->
 	<nav>
-		<!-- Botões de navegação -->
 		<a href="/clientes/cadastrar"><button onclick="cadastrodeclientes" class="small button">Cadastro de
 				Clientes</button></a>
 		<a href="/produtos/cadastrar"><button class="small button">Cadastro de Produtos</button></a>
@@ -30,40 +25,36 @@
 		<a href="/produtos/listar"><button class="small button">Lista de Produtos</button></a>
 	</nav>
 
-	<!-- Formulário de cadastro de vendas -->
 	<form class="form-horizontal" th:object="${venda}" th:action="@{/vendas/salvar}" method="POST" style="margin: 10px">
 		<div>
-			<!-- Campo para selecionar cliente -->
 			<label for="nome">Cliente:</label>
 			<select th:field="*{cliente}">
 				<option th:each="c : ${clientes}" th:value="${c.id}" th:text="${c.nome}"></option>
 			</select>
-			<!-- Campo para selecionar produto -->
 			<label for="produto">Produto:</label>
 			<select id="cargo" th:field="*{produto}">
 				<option th:each="p : ${produtos}" th:value="${p.id}" th:text="${p.nome}"></option>
 			</select>
 		</div>
 		<div>
-			<!-- Campo para quantidade -->
 			<label for="quantidade">Quantidade</label>
 			<input type="number" th:field="*{quantidade}" id="" placeholder="Quantidade">
 		</div>
 		<br>
-		<!-- Botão de submissão do formulário -->
 		<input type="submit" value="Registrar venda">
 	</form>
 
-	<!-- Rodapé -->
 	<footer class="footer">
 		<div class="container">
-			<!-- Informações do rodapé -->
 			<span class="footer-copy">&copy; 2023 Desenvolvido por Lazzarin Pedro.</span>
 		</div>
 	</footer>
 
-	<!-- Importação do arquivo JavaScript do Bootstrap -->
+	<!-- Bootstrap core JavaScript
+================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

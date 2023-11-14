@@ -17,37 +17,36 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.developer.java.entity.Clientes;
 import br.developer.java.repository.ClientesRepository;
 
-@Controller // Indica que esta classe é um controlador do Spring MVC
-@RequestMapping("/clientes") // Todas as rotas dentro deste controlador começarão com "/clientes"
+@Controller
+@RequestMapping("/clientes")
 public class ClientesController {
 
-	@Autowired // Injeção de dependência - ClientesRepository será automaticamente instanciado
+	@Autowired
 	private ClientesRepository repository;
 
-	@GetMapping("/cadastrar") // Mapeia requisições GET para "/clientes/cadastrar"
+	@GetMapping("/cadastrar")
 	public String cadastrar(@ModelAttribute("cliente") Clientes cliente) {
-		return "/clientes/cadastro"; // Retorna o nome do template Thymeleaf para página de cadastro
+		return "/clientes/cadastro";
 	}
 
-	@GetMapping("/listar") // Mapeia requisições GET para "/clientes/listar"
+	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("clientes", repository.findAll()); // Adiciona uma lista de clientes ao modelo
-		return "/clientes/listar"; // Retorna o nome do template Thymeleaf para a página de listagem de clientes
+		model.addAttribute("clientes", repository.findAll());
+		return "/clientes/listar";
 	}
 
-	@PostMapping("/salvar") // Mapeia requisições POST para "/clientes/salvar"
+	@PostMapping("/salvar")
 	public String salvar(@ModelAttribute("cliente") Clientes cliente, RedirectAttributes attr) {
-		repository.save(cliente); // Salva um novo cliente usando o repositório
-		attr.addFlashAttribute("success", "Cliente adicionado com sucesso"); // Adiciona um atributo de flash para
-																				// redirecionamento
-		return "redirect:/clientes/cadastrar"; // Redireciona para a página de cadastro após salvar o cliente
+		repository.save(cliente);
+		attr.addFlashAttribute("success", "Cliente adicionado com sucesso");
+		return "redirect:/clientes/cadastrar";
 	}
 
-	@GetMapping("/clientes/editar/{id}") // Mapeia requisições GET para "/clientes/clientes/editar/{id}"
+	@GetMapping("/clientes/editar/{id}")
 	public String showEditForm(@PathVariable Long id, Model model) {
-		// Lógica para recuperar os dados do cliente por ID e passá-los para o modelo
+		// Logic to retrieve client data by ID and pass it to the model
 		// ...
-		return "edit-client"; // Retorna o nome do template Thymeleaf para a página de edição de clientes
+		return "edit-client"; // Assuming "edit-client" is the Thymeleaf template for editing clients
 	}
 
 }

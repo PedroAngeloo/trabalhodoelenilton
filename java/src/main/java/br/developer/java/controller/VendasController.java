@@ -18,11 +18,10 @@ import br.developer.java.repository.ClientesRepository;
 import br.developer.java.repository.ProdutosRepository;
 import br.developer.java.repository.VendasRepository;
 
-@Controller // Indica que esta classe é um controlador do Spring MVC
-@RequestMapping("/vendas") // Todas as rotas dentro deste controlador começarão com "/vendas"
+@Controller
+@RequestMapping("/vendas")
 public class VendasController {
 
-	// Injeção de dependências dos repositórios
 	@Autowired
 	private ProdutosRepository produtos;
 
@@ -32,32 +31,32 @@ public class VendasController {
 	@Autowired
 	private ClientesRepository clientes;
 
-	@GetMapping("/cadastrar") // Mapeia requisições GET para "/vendas/cadastrar"
+	@GetMapping("/cadastrar")
 	public String cadastrar(@ModelAttribute("venda") Vendas venda) {
-		return "vendas/cadastro"; // Retorna o nome do template Thymeleaf para a página de cadastro de vendas
+		return "vendas/cadastro";
 	}
 
-	@GetMapping("/listar") // Mapeia requisições GET para "/vendas/listar"
+	@GetMapping("/listar")
 	public String mostrarListaVendas(ModelMap model) {
-		model.addAttribute("vendas", repository.findAll()); // Adiciona uma lista de vendas ao modelo
-		return "vendas/listar"; // Retorna o nome do template Thymeleaf para a página de listagem de vendas
+		model.addAttribute("vendas", repository.findAll());
+		return "vendas/listar";
 	}
 
-	@PostMapping("/salvar") // Mapeia requisições POST para "/vendas/salvar"
+	@PostMapping("/salvar")
 	public String salvar(@ModelAttribute("venda") Vendas venda, RedirectAttributes attr) {
-		repository.save(venda); // Salva uma nova venda usando o repositório VendasRepository
-		attr.addFlashAttribute("success", "Venda adicionada com sucesso"); // Adiciona um atributo de flash para
-																			// redirecionamento
-		return "redirect:cadastrar"; // Redireciona para a página de cadastro após salvar a venda
+		repository.save(venda);
+		attr.addFlashAttribute("success", "Produto adicionado com sucesso");
+		return "redirect:cadastrar";
 	}
 
 	@ModelAttribute("clientes")
 	public List<Clientes> getClientes() {
-		return clientes.findAll(); // Obtém uma lista de todos os clientes e adiciona ao modelo
+		return clientes.findAll();
 	}
 
 	@ModelAttribute("produtos")
 	public List<Produtos> getProdutos() {
-		return produtos.findAll(); // Obtém uma lista de todos os produtos e adiciona ao modelo
+		return produtos.findAll();
 	}
+
 }

@@ -12,29 +12,29 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.developer.java.entity.Produtos;
 import br.developer.java.repository.ProdutosRepository;
 
-@Controller // Indica que esta classe é um controlador do Spring MVC
-@RequestMapping("/produtos") // Todas as rotas dentro deste controlador começarão com "/produtos"
+@Controller
+@RequestMapping("/produtos")
 public class ProdutosController {
 
-	@Autowired // Injeção de dependência - ProdutosRepository será automaticamente instanciado
+	@Autowired
 	private ProdutosRepository repository;
 
-	@GetMapping("/cadastrar") // Mapeia requisições GET para "/produtos/cadastrar"
+	@GetMapping("/cadastrar")
 	public String cadastrar(@ModelAttribute("produto") Produtos produto) {
-		return "/produtos/cadastro"; // Retorna o nome do template Thymeleaf para a página de cadastro de produtos
+		return "/produtos/cadastro";
 	}
 
-	@GetMapping("/listar") // Mapeia requisições GET para "/produtos/listar"
+	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("produtos", repository.findAll()); // Adiciona uma lista de produtos ao modelo
-		return "/produtos/listar"; // Retorna o nome do template Thymeleaf para a página de listagem de produtos
+		model.addAttribute("produtos", repository.findAll());
+		return "/produtos/listar";
 	}
 
-	@PostMapping("/salvar") // Mapeia requisições POST para "/produtos/salvar"
+	@PostMapping("/salvar")
 	public String salvar(@ModelAttribute("produto") Produtos produto, RedirectAttributes attr) {
-		repository.save(produto); // Salva um novo produto usando o repositório
-		attr.addFlashAttribute("success", "Produto adicionado com sucesso"); // Adiciona um atributo de flash para
-																				// redirecionamento
-		return "redirect:/produtos/cadastrar"; // Redireciona para a página de cadastro após salvar o produto
+		repository.save(produto);
+		attr.addFlashAttribute("success", "Produto adicionado com sucesso");
+		return "redirect:/produtos/cadastrar";
 	}
+
 }
