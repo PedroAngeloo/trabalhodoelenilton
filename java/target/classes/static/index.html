@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Estilos personalizados para este modelo -->
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <meta charset="ISO-8859-1">
+    <title>Tela Inicial</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            /* Garante que o corpo cubra toda a altura da viewport */
+            margin: 0;
+            /* Remove a margem padrão */
+            background-color: rgb(54, 53, 53);
+        }
+
+        header {
+            text-align: center;
+            /* Centraliza o conteúdo no cabeçalho */
+            margin-bottom: 100px;
+            /* Adiciona uma margem entre o cabeçalho e o botão */
+        }
+
+        nav {
+            text-align: center;
+            /* Centraliza o conteúdo na navegação */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="https://www.fag.edu.br/mvc/assets/images/header/logo-fag.png?x88556" width=300 height=100>
+        </header>
+
+        <nav>
+            <a href="/vendas/listar"><button onclick="listarvendas" class="btn btn-primary">Entrar</button></a>
+        </nav>
+    </div>
+</body>
+
+</html>
