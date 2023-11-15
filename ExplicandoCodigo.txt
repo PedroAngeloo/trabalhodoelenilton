@@ -1,0 +1,90 @@
+Front-End
+Cadastro Clientes
+Bootstrap e Estilos Personalizados:
+O código importa o estilo padrão do Bootstrap (bootstrap.min.css) para aplicar um visual mais estilizado aos elementos da página.
+Também está vinculado um arquivo de estilos customizados (styles.css) que está localizado em uma pasta específica para estilizar elementos de forma personalizada.
+Cabeçalho (Header):
+Apresenta um cabeçalho que contém uma imagem de um carrinho de compras.
+Navegação (Nav):
+Mostra uma barra de navegação horizontal com links para diferentes seções da aplicação, como cadastro de clientes, produtos, vendas e listas desses itens.
+Formulário de Cadastro de Clientes:
+Um formulário permite a inserção de informações do cliente, incluindo nome, data de nascimento, sexo e CPF. Provavelmente, esses dados serão enviados para um servidor para serem armazenados em um banco de dados ou processados de alguma maneira.
+Rodapé (Footer):
+Na parte inferior da página, há um rodapé que exibe informações sobre o desenvolvedor, incluindo o nome "Desenvolvido por Lazzarin Pedro".
+Scripts JavaScript:
+Importa o script do Bootstrap (bootstrap.min.js) para adicionar funcionalidades dinâmicas à página, como modais, menus suspensos, entre outros.
+Lista Clientes
+Bootstrap e Estilos Personalizados:
+Importa o estilo padrão do Bootstrap (bootstrap.min.css) para estilizar os elementos da página.
+Também está vinculado um arquivo de estilos customizados (styles.css) para estilizar elementos de forma personalizada.
+Cabeçalho (Header):
+Contém uma imagem de um carrinho de compras.
+Navegação (Nav):
+Uma barra de navegação horizontal com links para diferentes seções da aplicação, como cadastro de clientes, produtos, vendas e listas desses itens.
+Tabela de Clientes:
+Mostra uma tabela que parece exibir informações de clientes, como ID, nome, CPF, data de nascimento e sexo.
+Usa a sintaxe do Thymeleaf (th:each) para iterar sobre a lista de clientes e exibir as informações correspondentes em linhas da tabela.
+Cada linha da tabela tem botões para editar e excluir um cliente.
+Modal (Comentado):
+Há código HTML comentado que parece ser para modais de confirmação de exclusão e edição, mas atualmente está desativado (<!-- ... -->).
+Rodapé (Footer):
+Contém informações de copyright e informa que foi desenvolvido por alguém chamado "Lazzarin Pedro".
+Scripts JavaScript:
+Importa o script do Bootstrap (bootstrap.min.js) para adicionar funcionalidades dinâmicas à página, como modais, dropdowns, entre outros.
+Cadastro Produto
+	Possuem tudo a mesma lógica do Cadastro Cliente, só mudando cada label da tela
+	pois agora precisamos do nome produto e valor do produto
+
+Lista Produto 
+	Também possui a mesma lógica do lista Clientes, só mudando os campos das label
+
+Cadastro Vendas
+	Em termos de funcionalidades ele funciona igual as outras demais de cadastro mas o diferencial dela é que ela consegue trazer as informações das outras telas de Lista - (Produto e Clientes) e fazer com que o usuário possa lançar uma venda tendo as duas informações um exemplo:
+ Cadastrei o Cliente - Pedro e o Produto - Tomate na tela de Cadastro de venda posso lançar uma venda do cliente Pedro que comprou tantas qtd de tomate.
+
+Lista Vendas
+	Essa tela lista todas as vendas feitas…
+
+Back-End 
+
+Só passo os métodos gets e sets e nas classes controller sendo basicamente as mesma coisas aqui em baixo vou explicar a clienteController
+package br.developer.java.controller; - Define o pacote no qual essa classe está localizada.
+import - Importa as classes necessárias para o funcionamento do controlador, incluindo classes do Spring Framework e classes personalizadas como Clientes e ClientesRepository.
+@Controller - É uma anotação do Spring que marca a classe como um controlador. Essa anotação indica ao Spring que essa classe gerencia as requisições HTTP.
+@RequestMapping("/clientes") - Especifica que este controlador irá lidar com solicitações que começam com /clientes.
+@Autowired - Anotação usada para realizar injeção de dependência, neste caso, está injetando uma instância de ClientesRepository no controlador.
+Métodos do controlador:
+cadastrar: Método GET que mapeia para /clientes/cadastrar. Retorna a página de cadastro de clientes (clientes/cadastro).
+listar: Método GET que mapeia para /clientes/listar. Retorna a página que lista os clientes, buscando os dados do repositório (ClientesRepository) e passando para o modelo (ModelMap).
+salvar: Método POST que mapeia para /clientes/salvar. Recebe os dados de um cliente a ser salvo, realiza a operação de salvar usando o ClientesRepository e redireciona para a página de cadastro de clientes com uma mensagem de sucesso.
+@GetMapping("/clientes/editar/{id}"): Método GET que mapeia para /clientes/editar/{id}. Este método deve recuperar os dados de um cliente específico com base no id fornecido na URL. No entanto, o corpo lógico para recuperar os dados do cliente por ID e passá-los para o modelo não está implementado aqui. Este método deve redirecionar para uma página de edição de cliente (por exemplo, edit-client), que seria um template Thymeleaf para editar clientes.
+No geral, esse controlador lida com requisições relacionadas a clientes. Ele inclui métodos para mostrar a página de cadastro, listar clientes, salvar um novo cliente e fornecer uma funcionalidade de edição (embora a lógica de edição específica não esteja completa no exemplo fornecido).
+
+
+Na entity são as colunas do banco de dados lembrando que estou usando o postgres e dbeaver
+aqui em baixo vou explicar melhor a classe entity Clientes
+
+
+@Entity e @Table(name = "clientes"):
+@Entity indica que essa classe é uma entidade JPA, ou seja, ela será mapeada para uma tabela no banco de dados.
+@Table(name = "clientes") especifica o nome da tabela no banco de dados para a entidade Clientes.
+Atributos da classe:
+@Id: Marca o atributo id como a chave primária da tabela clientes.
+@Column: Anotação usada para mapear atributos para colunas específicas no banco de dados.
+nome: Representa o nome do cliente na coluna nome.
+cpf: Representa o CPF do cliente na coluna cpf.
+sexo: Representa o sexo do cliente na coluna sexo.
+dataDeNascimento: Representa a data de nascimento do cliente na coluna data_de_nascimento.
+Métodos getters e setters:
+Métodos para acessar e modificar os atributos da classe.
+setDataDeNascimento: Define a data de nascimento do cliente como uma string. No entanto, em práticas de desenvolvimento mais comuns, a data seria armazenada como um tipo java.util.Date ou java.time.LocalDate para facilitar o tratamento e operações de data.
+@GeneratedValue:
+Essa anotação é usada para indicar ao provedor JPA para gerar automaticamente valores para a chave primária. No caso, @GeneratedValue sem argumentos, o provedor JPA seleciona a estratégia de geração de identidade apropriada para o banco de dados.
+Validações:
+Não foram adicionadas validações explícitas neste código, mas o ideal seria adicionar anotações de validação, como @NotNull, @NotBlank, @Size, entre outras do pacote javax.validation.constraints, para garantir a integridade dos dados.
+Manipulação de Data:
+A data de nascimento está sendo armazenada como uma string (String dataDeNascimento). Geralmente, é mais comum utilizar um tipo de dado apropriado para datas, como java.util.Date, java.time.LocalDate, java.sql.Date, para manipular dados de data no Java.
+Esta classe Java é uma representação de entidade que mapeia para uma tabela de clientes no banco de dados, mas é importante considerar melhorias na representação da data, validações e apropriada estratégia de geração de identidade de acordo com os requisitos do sistema.
+ 
+
+
